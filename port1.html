@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Evolving Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; color: #0b1b2b; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #020617, #020617);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, white, transparent),
+        radial-gradient(1px 1px at 80% 20%, white, transparent),
+        radial-gradient(1px 1px at 50% 70%, white, transparent),
+        radial-gradient(1px 1px at 30% 80%, white, transparent),
+        radial-gradient(1px 1px at 70% 60%, white, transparent);
+      background-size: 200px 200px;
+      animation: twinkle 6s infinite alternate;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      animation-duration: 9s;
+      opacity: 0.5;
+    }
+    .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; }
+    .hero h1 span { color: #38bdf8; }
+    .hero p { max-width: 800px; margin: 0 auto 2rem; color: #dbeafe; font-size: 1.25rem; }
+    .hero .buttons a {
+      display: inline-block;
+      padding: 0.9rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      margin: 0.5rem;
+    }
+    .primary { background: #0ea5e9; color: #fff; }
+    .secondary { border: 2px solid #fff; color: #fff; }
+
+    section { padding: 5rem 2rem; max-width: 1200px; margin: auto; }
+    section h2 { font-size: 2.2rem; margin-bottom: 1rem; text-align: center; }
+    section h2 span { color: #0ea5e9; }
+    section p.subtitle { text-align: center; color: #64748b; margin-bottom: 3rem; }
+
+    /* TIMELINE */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #0ea5e9;
+      transform: translateX(-50%);
+    }
+    .entry {
+      width: 45%;
+      background: #fff;
+      padding: 1.5rem 1.5rem 1.5rem 4.5rem;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 3rem;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .entry:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(14,165,233,0.25);
+    }
+    
+.edu-icon {
+      position: absolute;
+      left: 1.2rem;
+      top: 1.5rem;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #e0f2fe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0284c7;
+      font-size: 1.2rem;
+    }
+    .left { margin-right: auto; }
+    .right { margin-left: auto; }
+    .entry h3 { margin-bottom: 0.3rem; }
+    .entry span { font-size: 0.9rem; color: #0ea5e9; font-weight: 600; }
+
+    /* ABOUT ME */
+    .about-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-text {
+      flex: 1;
+      font-size: 1.05rem;
+      color: #334155;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+    }
+
+    .pixel-wrapper { display:flex; align-items:center; justify-content:center; }
+
+    .pixel-human {
+      font-size: 4rem;
+      animation: float 3s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+      100% { opacity: 0.4; }
+    }
+
+    /* SKILLS */
+    .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .bar { margin-bottom: 1.2rem; }
+    .bar label { font-weight: 600; }
+    .progress { background: #e5e7eb; border-radius: 10px; overflow: hidden; height: 10px; margin-top: 0.4rem; }
+    .progress div { height: 100%; background: #0ea5e9; }
+
+    /* PROJECTS */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      padding: 1.8rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card h3 { margin-bottom: 0.5rem; }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(14,165,233,0.25);
+    }
+    .future { margin-bottom: 1.5rem; }
+    .badge { display: inline-block; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 999px; background: #dcfce7; color: #166534; margin-bottom: 0.5rem; }
+
+    /* CERT BUTTONS */
+    .cert-buttons { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+    .cert-buttons a {
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 2px solid #0ea5e9;
+      color: #0ea5e9;
+    }
+    .cert-buttons a.primary { background: #0ea5e9; color: #fff; }
+
+    /* CONTACT */
+    footer {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #020617, #020617);
+      color: #fff;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 25% 40%, white, transparent),
+        radial-gradient(1px 1px at 75% 65%, white, transparent),
+        radial-gradient(1px 1px at 50% 20%, white, transparent);
+      background-size: 250px 250px;
+      animation: twinkle 8s infinite alternate;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    footer h2 { margin-bottom: 0.5rem; font-size: 2rem; }
+    footer p { color: #cbd5e1; margin-bottom: 2rem; }
+
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 16px;
+      backdrop-filter: blur(6px);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      box-shadow: 0 0 0 2px #38bdf8;
+    }
+
+    .contact-form button {
+      margin-top: 0.5rem;
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+      color: #071a2d;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(14,165,233,0.35);
+    }
+
+    .icons a {
+      font-size: 1.9rem;
+      margin: 0 1rem;
+      color: #38bdf8;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .icons a:hover {
+      transform: scale(1.15);
+      color: #7dd3fc;
+    }
+
+    
+
+@media (max-width: 900px) {
+      .about-container { flex-direction: column; text-align: center; }
+      .pixel-human { font-size: 3.5rem; }
+
+
+      .skills { grid-template-columns: 1fr; }
+      .timeline::before { left: 20px; }
+      .entry { width: 100%; margin-left: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <h1>The <span>Evolving</span><br>Professional</h1>
+      <p style="font-size:1.25rem;">Bridging academic excellence and athletic achievement, technical precision and aesthetic sensibility—showcasing a journey of continuous growth.</p>
+
+      <div class="icons" style="margin:1.5rem 0;">
+        <a href="https://www.linkedin.com/in/joshua-rajendran-2b83113a1/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/niyo-joshua"><i class="fab fa-github"></i></a>
+        <a href="mailto:r.joshua14010@email.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT ME -->
+  <section id="about">
+    <h2>About <span>Me</span></h2>
+    <p class="subtitle">A quick snapshot of who I am and what drives me</p>
+
+    <div class="about-container">
+      <div class="about-text">
+        <p>
+          I am Joshua Rajendran . A Computer Enginnering Student and  I am a curious learner with a strong foundation in computer science,
+          combining academic discipline with creative problem-solving.
+        </p>
+        <p>
+          I enjoy building clean, user‑friendly interfaces and continuously improving my
+          technical and professional skills through hands‑on learning.
+        </p>
+      </div>
+
+      <div class="pixel-wrapper">
+        <div class="pixel-human" aria-hidden="true">🧍‍♂️</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education <span>Journey</span></h2>
+    <p class="subtitle">A timeline of academic achievements</p>
+    <div class="timeline">
+      <div class="entry left"><div class="edu-icon"><i class="fas fa-school"></i></div>
+        <span>2005 – 2015</span>
+        <h3>School Education(20010-2023)</h3>
+        <p>St Xavier's High School & Junior College • SSC:85.25%</p>
+      </div>
+      <div class="entry right"><div class="edu-icon"><i class="fas fa-university"></i></div>
+        <span>2015 – 2017</span>
+        <h3>Junior College(2023-2025)</h3>
+        <p>NES Junior College of Arts, Science and Commerce •
+Science Stream • HSC:85.5%</p>
+      </div>
+      <div class="entry left"><div class="edu-icon"><i class="fas fa-school"></i></div>
+        <span>2017 – 2021</span>
+        <h3>Engineering College(2025-2029)</h3>
+        <p>Fr. Conceicao Rodrigues College of Engineering </p>
+      </div>
+    </div>
+
+    <div class="cert-buttons">
+      
+      <a href="https://example.com/academic-certificates" target="_blank" class="primary">Academic Certificates</a>
+      <a href="https://example.com/sports-certificates" target="_blank">Sports Certificates</a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <h2>Skills & <span>Expertise</span></h2>
+    <p class="subtitle">Current capabilities and future roadmap</p>
+    <div class="skills">
+      <div>
+        <h3 style="font-weight:800;margin-bottom:1rem;">Current Capabilities</h3>
+        <div class="bar"><label>HTML & CSS — 90%</label><div class="progress"><div style="width:90%"></div></div></div>
+        <div class="bar"><label>JavaScript — 85%</label><div class="progress"><div style="width:85%"></div></div></div>
+        <div class="bar"><label>React — 80%</label><div class="progress"><div style="width:80%"></div></div></div>
+        <div class="bar"><label>Python — 70%</label><div class="progress"><div style="width:70%"></div></div></div>
+      </div>
+      <div>
+        <h3 style="font-weight:800;margin-bottom:1rem;">Future Learning Roadmap</h3>
+        <div class="card future"><h3>TypeScript</h3><p>Strengthening JavaScript with static typing.</p></div>
+        <div class="card future"><h3>Cloud Architecture</h3><p>AWS, Azure, DevOps & scalable systems.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <h2>Project <span>Laboratory</span></h2>
+    <p class="subtitle">Upcoming projects — currently in planning & learning phase</p>
+    <div class="projects">
+      <div class="card"><span class="badge">Upcoming</span><h3>To-Do List App</h3><p>Project planned — focusing on advanced state management and UI polish.</p></div>
+      <div class="card"><span class="badge">Upcoming</span><h3>Digital Clock</h3><p>Scheduled — will include animations, themes, and accessibility improvements.</p></div>
+      <div class="card"><span class="badge">Upcoming</span><h3>Calculator App</h3><p>In roadmap — aims to cover scientific operations and clean UX.</p></div>
+    </div>
+    <p style="text-align:center;margin-top:2rem;font-weight:700;color:#0ea5e9;">More projects coming soon 🚀</p>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact">
+    <h2>Contact Me</h2>
+    <p>Feel free to reach out using the form below</p>
+
+ <style>
+  .contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .contact-form label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    font-family: inherit;
+    margin-top: 0.4rem;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    box-shadow: 0 0 0 2px #38bdf8;
+  }
+
+  .contact-form textarea {
+    resize: none;
+  }
+
+  .contact-form button {
+    margin-top: 0.5rem;
+    padding: 0.9rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+    color: #071a2d;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .contact-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(14,165,233,0.35);
+  }
+</style>
+
+<form
+  class="contact-form"
+  action="https://formspree.io/f/xnjanyev"
+  method="POST"
+>
+  <label>
+    Your Name
+    <input type="text" name="name" placeholder="Your full name" required>
+  </label>
+
+  <label>
+    Your Email
+    <input type="email" name="email" placeholder="you@example.com" required>
+  </label>
+
+  <label>
+    Your Message
+    <textarea name="message" rows="5" placeholder="Write your message here..." required></textarea>
+  </label>
+
+  <button type="submit">Send Message</button>
+</form>
+
+
+    <div class="icons">
+      <a href="https://www.linkedin.com/in/joshua-rajendran-2b83113a1/"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:r.joshua14010@email.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/niyo-joshua"><i class="fab fa-github"></i></a>
+    </div>
+  </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Sports Certificates</title>
+<style>
+  /* Black background with twinkling stars */
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+  }
+  /* Stars */
+  .stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -1;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 2s infinite ease-in-out alternate;
+  }
+  @keyframes twinkle {
+    0%, 100% {opacity: 0.8;}
+    50% {opacity: 0.2;}
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .certificates {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .certificate {
+    background: #222;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 280px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    text-align: center;
+  }
+
+  .certificate img {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  .certificate h3 {
+    margin: 0.5rem 0 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<header>My Sports Certificates</header>
+
+<div class="certificates">
+  <div class="certificate">
+    <img src="https://via.placeholder.com/280x180?text=Certificate+1" alt="Certificate 1" />
+    <h3>Certificate Title 1</h3>
+    <p>Issued by XYZ University</p>
+  </div>
+  <div class="certificate">
+    <img src="https://via.placeholder.com/280x180?text=Certificate+2" alt="Certificate 2" />
+    <h3>Certificate Title 2</h3>
+    <p>Issued by ABC Institute</p>
+  </div>
+  <!-- Add more certificates here -->
+</div>
+
+<script>
+  // Generate random stars on the background
+  const starsContainer = document.getElementById('stars');
+  const starCount = 100;
+
+  for(let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    const size = Math.random() * 2 + 1; // size between 1 and 3px
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+    starsContainer.appendChild(star);
+  }
+</script>
+<div style="text-align:center; margin-bottom: 20px;">
+  <button onclick="location.href='myportfolio.html'" style="
+    background-color: #444; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    cursor: pointer;
+  ">
+    Home
+  </button>
+</div>
+
+
+</body>
+</html>
