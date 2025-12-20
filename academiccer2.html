@@ -41,13 +41,13 @@
   }
 
   .certificates {
-    max-width: 900px;
-    margin: 0 auto 3rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
 
   .certificate {
     background: #222;
@@ -121,7 +121,7 @@
 </div>
 
 
-
+<br>
 
 <script>
   // Generate random stars on the background
